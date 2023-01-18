@@ -1,0 +1,12 @@
+query GetListsByOwnerOrParticipant($email: String = "streeterbr@gmail.com") {
+  lists(
+    where: {OR: [{owner: $email}, {participants_contains_some: [$email]}]}
+  ) {
+    listName
+    id
+    manageSlug
+    owner
+    shareSlug
+  }
+}
+

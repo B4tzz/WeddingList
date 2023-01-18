@@ -1,0 +1,11 @@
+mutation AddItemToList($title: String = "", $link: String = "", $listId: ID = "") {
+  createGift(
+    data: {title: $title, link: $link, list: {connect: {id: $listId}}}
+  ) {
+    contributorEmail
+    contributorName
+    id
+    link
+    title
+  }
+}

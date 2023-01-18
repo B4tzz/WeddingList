@@ -1,0 +1,5 @@
+mutation PublishToList($id: ID = "") {
+  publishGift(where: {id: $id}, to: PUBLISHED) {
+    id
+  }
+}

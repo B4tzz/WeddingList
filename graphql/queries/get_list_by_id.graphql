@@ -1,0 +1,20 @@
+query GetListsById($id: ID = "") {
+  list(where: {id: $id}) {
+    id
+    listName
+    owner
+    manageSlug
+    participants
+    shareSlug
+    listGifts {
+      ... on Gift {
+        id
+        contributorName
+        link
+        contributorEmail
+        title
+      }
+    }
+  }
+}
+

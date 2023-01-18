@@ -1,0 +1,11 @@
+query GetListBasicById($id: ID = "") {
+  list(where: {id: $id}) {
+    id
+    listName
+    owner
+    manageSlug
+    participants
+    shareSlug
+  }
+}
+
