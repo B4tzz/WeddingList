@@ -14,6 +14,7 @@ export const authOptions: NextAuthOptions = {
     theme: {
       colorScheme: "light",
     },
+    secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
       async session({ session, token, user }) {
         return session // The return type will match the one returned in `useSession()`
