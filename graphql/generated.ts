@@ -81,6 +81,7 @@ export type AssetCreatedAtArgs = {
 
 /** Asset system model */
 export type AssetCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -116,6 +117,7 @@ export type AssetPublishedAtArgs = {
 
 /** Asset system model */
 export type AssetPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -125,6 +127,7 @@ export type AssetScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -140,6 +143,7 @@ export type AssetUpdatedAtArgs = {
 
 /** Asset system model */
 export type AssetUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -808,6 +812,7 @@ export type Gift = Node & {
 
 
 export type GiftCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -827,11 +832,13 @@ export type GiftHistoryArgs = {
 
 
 export type GiftListArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 export type GiftPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -840,6 +847,7 @@ export type GiftScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -848,6 +856,7 @@ export type GiftScheduledInArgs = {
 
 
 export type GiftUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1402,6 +1411,7 @@ export type Item = Node & {
 
 
 export type ItemCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1421,11 +1431,13 @@ export type ItemHistoryArgs = {
 
 
 export type ItemListArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 export type ItemPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1434,6 +1446,7 @@ export type ItemScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -1442,6 +1455,7 @@ export type ItemScheduledInArgs = {
 
 
 export type ItemUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1972,6 +1986,7 @@ export type List = Node & {
 
 
 export type ListCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -1994,6 +2009,7 @@ export type ListItensArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -2004,6 +2020,7 @@ export type ListListGiftsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -2011,6 +2028,7 @@ export type ListListGiftsArgs = {
 
 
 export type ListPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -2019,6 +2037,7 @@ export type ListScheduledInArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -2027,6 +2046,7 @@ export type ListScheduledInArgs = {
 
 
 export type ListUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -3852,6 +3872,7 @@ export type ScheduledOperationAffectedDocumentsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
@@ -3860,6 +3881,7 @@ export type ScheduledOperationAffectedDocumentsArgs = {
 
 /** Scheduled Operation system model */
 export type ScheduledOperationCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -3874,18 +3896,21 @@ export type ScheduledOperationDocumentInStagesArgs = {
 
 /** Scheduled Operation system model */
 export type ScheduledOperationPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** Scheduled Operation system model */
 export type ScheduledOperationReleaseArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** Scheduled Operation system model */
 export type ScheduledOperationUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -4266,6 +4291,7 @@ export type ScheduledRelease = Node & {
 
 /** Scheduled Release system model */
 export type ScheduledReleaseCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -4283,6 +4309,7 @@ export type ScheduledReleaseOperationsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
   first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   last?: InputMaybe<Scalars['Int']>;
   locales?: InputMaybe<Array<Locale>>;
   orderBy?: InputMaybe<ScheduledOperationOrderByInput>;
@@ -4293,12 +4320,14 @@ export type ScheduledReleaseOperationsArgs = {
 
 /** Scheduled Release system model */
 export type ScheduledReleasePublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
 
 /** Scheduled Release system model */
 export type ScheduledReleaseUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
@@ -5305,6 +5334,31 @@ export enum _SystemDateTimeFieldVariation {
   Localization = 'localization'
 }
 
+export type DeleteGiftByIdMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type DeleteGiftByIdMutation = { __typename?: 'Mutation', deleteGift?: { __typename?: 'Gift', id: string } | null };
+
+export type UpdateGiftByIdMutationVariables = Exact<{
+  link?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type UpdateGiftByIdMutation = { __typename?: 'Mutation', updateGift?: { __typename?: 'Gift', id: string, link?: string | null, title: string, contributorEmail?: string | null, contributorName?: string | null } | null };
+
+export type PickGiftByIdMutationVariables = Exact<{
+  contributorName?: InputMaybe<Scalars['String']>;
+  contributorEmail?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+}>;
+
+
+export type PickGiftByIdMutation = { __typename?: 'Mutation', updateGift?: { __typename?: 'Gift', id: string, link?: string | null, title: string, contributorEmail?: string | null, contributorName?: string | null } | null };
+
 export type AddItemToListMutationVariables = Exact<{
   title?: InputMaybe<Scalars['String']>;
   link?: InputMaybe<Scalars['String']>;
@@ -5342,16 +5396,121 @@ export type PublishToListMutationVariables = Exact<{
 
 export type PublishToListMutation = { __typename?: 'Mutation', publishGift?: { __typename?: 'Gift', id: string } | null };
 
-export type PickGiftByIdMutationVariables = Exact<{
-  contributorName?: InputMaybe<Scalars['String']>;
-  contributorEmail?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-}>;
 
+export const DeleteGiftByIdDocument = gql`
+    mutation DeleteGiftById($id: ID = "") {
+  deleteGift(where: {id: $id}) {
+    id
+  }
+}
+    `;
+export type DeleteGiftByIdMutationFn = Apollo.MutationFunction<DeleteGiftByIdMutation, DeleteGiftByIdMutationVariables>;
 
-export type PickGiftByIdMutation = { __typename?: 'Mutation', updateGift?: { __typename?: 'Gift', id: string, link?: string | null, title: string, contributorEmail?: string | null, contributorName?: string | null } | null };
+/**
+ * __useDeleteGiftByIdMutation__
+ *
+ * To run a mutation, you first call `useDeleteGiftByIdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteGiftByIdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteGiftByIdMutation, { data, loading, error }] = useDeleteGiftByIdMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteGiftByIdMutation(baseOptions?: Apollo.MutationHookOptions<DeleteGiftByIdMutation, DeleteGiftByIdMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteGiftByIdMutation, DeleteGiftByIdMutationVariables>(DeleteGiftByIdDocument, options);
+      }
+export type DeleteGiftByIdMutationHookResult = ReturnType<typeof useDeleteGiftByIdMutation>;
+export type DeleteGiftByIdMutationResult = Apollo.MutationResult<DeleteGiftByIdMutation>;
+export type DeleteGiftByIdMutationOptions = Apollo.BaseMutationOptions<DeleteGiftByIdMutation, DeleteGiftByIdMutationVariables>;
+export const UpdateGiftByIdDocument = gql`
+    mutation UpdateGiftById($link: String = "", $title: String = "", $id: ID = "") {
+  updateGift(data: {link: $link, title: $title}, where: {id: $id}) {
+    id
+    link
+    title
+    contributorEmail
+    contributorName
+  }
+}
+    `;
+export type UpdateGiftByIdMutationFn = Apollo.MutationFunction<UpdateGiftByIdMutation, UpdateGiftByIdMutationVariables>;
 
+/**
+ * __useUpdateGiftByIdMutation__
+ *
+ * To run a mutation, you first call `useUpdateGiftByIdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateGiftByIdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateGiftByIdMutation, { data, loading, error }] = useUpdateGiftByIdMutation({
+ *   variables: {
+ *      link: // value for 'link'
+ *      title: // value for 'title'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUpdateGiftByIdMutation(baseOptions?: Apollo.MutationHookOptions<UpdateGiftByIdMutation, UpdateGiftByIdMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateGiftByIdMutation, UpdateGiftByIdMutationVariables>(UpdateGiftByIdDocument, options);
+      }
+export type UpdateGiftByIdMutationHookResult = ReturnType<typeof useUpdateGiftByIdMutation>;
+export type UpdateGiftByIdMutationResult = Apollo.MutationResult<UpdateGiftByIdMutation>;
+export type UpdateGiftByIdMutationOptions = Apollo.BaseMutationOptions<UpdateGiftByIdMutation, UpdateGiftByIdMutationVariables>;
+export const PickGiftByIdDocument = gql`
+    mutation PickGiftById($contributorName: String = "", $contributorEmail: String = "", $id: ID = "") {
+  updateGift(
+    data: {contributorEmail: $contributorEmail, contributorName: $contributorName}
+    where: {id: $id}
+  ) {
+    id
+    link
+    title
+    contributorEmail
+    contributorName
+  }
+}
+    `;
+export type PickGiftByIdMutationFn = Apollo.MutationFunction<PickGiftByIdMutation, PickGiftByIdMutationVariables>;
 
+/**
+ * __usePickGiftByIdMutation__
+ *
+ * To run a mutation, you first call `usePickGiftByIdMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePickGiftByIdMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [pickGiftByIdMutation, { data, loading, error }] = usePickGiftByIdMutation({
+ *   variables: {
+ *      contributorName: // value for 'contributorName'
+ *      contributorEmail: // value for 'contributorEmail'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePickGiftByIdMutation(baseOptions?: Apollo.MutationHookOptions<PickGiftByIdMutation, PickGiftByIdMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PickGiftByIdMutation, PickGiftByIdMutationVariables>(PickGiftByIdDocument, options);
+      }
+export type PickGiftByIdMutationHookResult = ReturnType<typeof usePickGiftByIdMutation>;
+export type PickGiftByIdMutationResult = Apollo.MutationResult<PickGiftByIdMutation>;
+export type PickGiftByIdMutationOptions = Apollo.BaseMutationOptions<PickGiftByIdMutation, PickGiftByIdMutationVariables>;
 export const AddItemToListDocument = gql`
     mutation AddItemToList($title: String = "", $link: String = "", $listId: ID = "") {
   createGift(data: {title: $title, link: $link, list: {connect: {id: $listId}}}) {
@@ -5552,45 +5711,3 @@ export function usePublishToListMutation(baseOptions?: Apollo.MutationHookOption
 export type PublishToListMutationHookResult = ReturnType<typeof usePublishToListMutation>;
 export type PublishToListMutationResult = Apollo.MutationResult<PublishToListMutation>;
 export type PublishToListMutationOptions = Apollo.BaseMutationOptions<PublishToListMutation, PublishToListMutationVariables>;
-export const PickGiftByIdDocument = gql`
-    mutation PickGiftById($contributorName: String = "", $contributorEmail: String = "", $id: ID = "") {
-  updateGift(
-    data: {contributorEmail: $contributorEmail, contributorName: $contributorName}
-    where: {id: $id}
-  ) {
-    id
-    link
-    title
-    contributorEmail
-    contributorName
-  }
-}
-    `;
-export type PickGiftByIdMutationFn = Apollo.MutationFunction<PickGiftByIdMutation, PickGiftByIdMutationVariables>;
-
-/**
- * __usePickGiftByIdMutation__
- *
- * To run a mutation, you first call `usePickGiftByIdMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `usePickGiftByIdMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [pickGiftByIdMutation, { data, loading, error }] = usePickGiftByIdMutation({
- *   variables: {
- *      contributorName: // value for 'contributorName'
- *      contributorEmail: // value for 'contributorEmail'
- *      id: // value for 'id'
- *   },
- * });
- */
-export function usePickGiftByIdMutation(baseOptions?: Apollo.MutationHookOptions<PickGiftByIdMutation, PickGiftByIdMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<PickGiftByIdMutation, PickGiftByIdMutationVariables>(PickGiftByIdDocument, options);
-      }
-export type PickGiftByIdMutationHookResult = ReturnType<typeof usePickGiftByIdMutation>;
-export type PickGiftByIdMutationResult = Apollo.MutationResult<PickGiftByIdMutation>;
-export type PickGiftByIdMutationOptions = Apollo.BaseMutationOptions<PickGiftByIdMutation, PickGiftByIdMutationVariables>;

@@ -10,7 +10,7 @@
     "codegen": "graphql-codegen --config codegen.yaml"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.9",
+    "@apollo/client": "^3.7.5",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@headlessui/react": "^1.6.5",
@@ -23,8 +23,8 @@
     "next": "12.2.0",
     "next-auth": "^4.8.0",
     "phosphor-react": "^1.4.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.1.5",
     "react-router-dom": "^6.3.0"
   },

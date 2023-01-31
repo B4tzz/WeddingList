@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ThreeDots } from "react-loader-spinner";
 import {
@@ -7,6 +7,8 @@ import {
 	GiftCreateInput,
 	useAddItemToListMutation,
 	usePublishToListMutation,
+	GiftUpdateWithNestedWhereUniqueInput,
+	useUpdateGiftByIdMutation
 } from "../graphql/generated";
 import { GitBranch } from "phosphor-react";
 import { useRouter } from "next/router";
@@ -16,15 +18,21 @@ import { SuccessLoader } from "./successModal";
 export default function CreateItemModal(props: {
 	showLoader: boolean;
 	setShowLoaderProps: Function;
+	gift: Gift | undefined;
 }) {
 	const router = useRouter();
-	const [gift, setGift] = useState<GiftCreateInput>();
+	const [gift, setGift] = useState<Gift | GiftCreateInput | undefined>(props.gift);
+	const [updateItem] = useUpdateGiftByIdMutation();
 	const [createItem] = useAddItemToListMutation();
 	const [publishItem] = usePublishToListMutation();
 	const [showLoader, setShowLoader] = useState<boolean>(false);
 	const [showPositiveLoader, setShowPositiveLoader] = useState<boolean>(false);
 
 	const cancelButtonRef = useRef(null);
+
+	useEffect(() => {
+		setGift(props.gift);
+	}, [props.gift])
 
 	const handleRenameGiftTitle = (text: string) => {
 		let auxGift = { title: text };
@@ -46,7 +54,6 @@ export default function CreateItemModal(props: {
 	};
 
 	const handleCancel = (e: any) => {
-		console.log("chamou cancel");
 		props.setShowLoaderProps();
 		e.preventDefault();
 	};
@@ -55,23 +62,40 @@ export default function CreateItemModal(props: {
 		try {
 			setShowLoader(true);
 			e.preventDefault();
-			const result = await createItem({
-				variables: {
-					title: gift?.title,
-					link: gift?.link,
-					listId: router.query.listId?.toString(),
-				},
-			});
+			let result, itemId;
+			/*@ts-ignore*/
+			if(gift?.id){
+				result = await updateItem({
+					variables: {
+						title: gift?.title,
+						link: gift?.link,
+						/*@ts-ignore*/
+						id: gift?.id,
+					},
+				});
 
-			console.log(result);
+				itemId = result.data?.updateGift?.id
+			}
+			else{
+				result = await createItem({
+					variables: {
+						title: gift?.title,
+						link: gift?.link,
+						listId: router.query.listId?.toString(),
+					},
+				});
+
+				itemId = result.data?.createGift?.id
+			}
+			
 
 			const publishResult = await publishItem({
 				variables: {
-					id: result.data?.createGift?.id,
+					id: itemId,
 				},
 			});
 
-			console.log(publishResult);
+			
 			if (result && publishResult) {
 				setShowPositiveLoader(true);
 				setTimeout(() => {
@@ -89,7 +113,7 @@ export default function CreateItemModal(props: {
 	return (
 		<div>
 			<ModalLoader showLoader={showLoader} setShowLoader={setShowLoader} text={"Carregando..."} />
-			<SuccessLoader text="Item criado com sucesso." setShowLoader={setShowPositiveLoader} showLoader={showPositiveLoader} />
+			<SuccessLoader text="Item salvo com sucesso." setShowLoader={setShowPositiveLoader} showLoader={showPositiveLoader} />
 			<Transition.Root show={props.showLoader} as={Fragment}>
 				<Dialog
 					as="div"
@@ -167,7 +191,7 @@ export default function CreateItemModal(props: {
 													className="flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-green-700 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 													onClick={async (e) => await handleCreateItem(e)}
 												>
-													Criar
+													Salvar
 												</button>
 											</div>
 										</form>

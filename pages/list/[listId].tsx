@@ -32,20 +32,3 @@ export default function Dashboard() {
     </div>
   )
 }
-
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context);
-
-  if (!session) {
-      return {
-          redirect: {
-              destination: '/',
-              permanent: false,
-          },
-      }
-  }
-
-  return {
-      props: { session }
-  }
-}

@@ -1,6 +1,6 @@
 mutation PickGiftById($contributorName: String = "", $contributorEmail: String = "", $id: ID = "") {
   updateGift(
-    data: {contributorEmail: $contributorEmail, contributorName: $contributorName}
+    data: {contributorEmail: $contributorEmail, contributorName: $contributorName},
     where: {id: $id}
   ) {
     id

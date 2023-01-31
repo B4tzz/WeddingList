@@ -1,0 +1,12 @@
+mutation UpdateGiftById($link: String = "", $title: String = "", $id: ID = "") {
+  updateGift(
+    data: {link: $link, title: $title},
+    where: {id: $id}
+  ) {
+    id
+    link
+    title
+    contributorEmail
+    contributorName
+  }
+}

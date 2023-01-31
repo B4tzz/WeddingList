@@ -1,0 +1,5 @@
+mutation DeleteGiftById($id: ID = "") {
+  deleteGift(where: {id: $id}) {
+    id
+  }
+}

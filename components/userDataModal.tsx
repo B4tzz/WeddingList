@@ -10,6 +10,14 @@ export function UserDataModal(props : { showLoader: boolean, setShowLoader: Func
 
     const cancelButtonRef = useRef(null);
 
+    const saveUserData = async (email : String, name : String) => {
+        const userData = {
+            name: name,
+            email: email
+        }
+        localStorage.setItem('USER_DATA', JSON.stringify(userData));
+    }
+
     return (
         <Transition.Root show={props.showLoader} as={Fragment}>
             <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={() => {}}>
@@ -69,7 +77,7 @@ export function UserDataModal(props : { showLoader: boolean, setShowLoader: Func
                                         <button
 						                	type="submit"
 						                	className="flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-md text-white bg-green-700 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-						                	onClick={() => {}}
+						                	onClick={() => {saveUserData(email, nome)}}
 						                >
 						                	Salvar
 						                </button>

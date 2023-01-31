@@ -14,8 +14,10 @@ import { NextRouter, useRouter } from "next/router";
 import {
 	GetListsByIdQuery,
 	Gift,
+	useDeleteGiftByIdMutation,
 	useGetListsByIdQuery,
 	usePickGiftByIdMutation,
+	usePublishToListMutation,
 } from "../graphql/generated";
 var cache = require('memory-cache');
 import { UserDataModal } from "./userDataModal";
@@ -72,20 +74,10 @@ function createData(
 	return { id, itemName, link, contributor };
 }
 
-const rows = [
-	createData(
-		"1",
-		"Jogo de copos (6 unidades)",
-		"https://www.magazineluiza.com.br/jogo-de-copos-de-vidro-300ml-6-pecas-nadir-oca-long-drink/p/142260600/ud/cpdk/?&seller_id=magazineluiza&utm_source=google&utm_medium=pla&utm_campaign=&partner_id=67192&gclid=Cj0KCQjwn4qWBhCvARIsAFNAMiggGx0isnI3FeoDEzyVeZXqUKh29Guyr4xVBhk2FQG2268SSebqaG0aAksGEALw_wcB&gclsrc=aw.ds",
-		"Gabriel Batista"
-	),
-	createData(
-		"2",
-		"Jogo de copos (6 unidades)",
-		"https://www.magazineluiza.com.br/jogo-de-copos-de-vidro-300ml-6-pecas-nadir-oca-long-drink/p/142260600/ud/cpdk/?&seller_id=magazineluiza&utm_source=google&utm_medium=pla&utm_campaign=&partner_id=67192&gclid=Cj0KCQjwn4qWBhCvARIsAFNAMiggGx0isnI3FeoDEzyVeZXqUKh29Guyr4xVBhk2FQG2268SSebqaG0aAksGEALw_wcB&gclsrc=aw.ds",
-		undefined
-	),
-];
+interface UserData {
+	name: string;
+	email: string;
+}
 
 export default function ListTable(props: any) {
 	const router = useRouter();
@@ -99,14 +91,17 @@ export default function ListTable(props: any) {
 	const [editableComponents, setEditableComponentes] = useState(
 		router.route === "/list/manage/[listId]"
 	);
-	const [userData, setUserData] = useState<JSON>();
+	const [userData, setUserData] = useState<UserData>();
 	const [showUserModal, setShowUserModal] = useState(false);
 	const [showCreateItemModal, setShowCreateItemModal] = useState(false);
+	const [pickGift] = usePickGiftByIdMutation();
+	const [publishItem] = usePublishToListMutation();
+	const [deleteGift] = useDeleteGiftByIdMutation();
+	const [itemToManage, setItemToManage] = useState<Gift>();
 
 	useEffect(() => {
     readCacheData()
 		if (!userData || userData == null) {
-			console.log("solicitar info do usuário");
 			setShowUserModal(true)
 		}
 		else{
@@ -122,10 +117,8 @@ export default function ListTable(props: any) {
 
   function readCacheData() {
 		const userData = localStorage.getItem('USER_DATA');
-		console.log('readCacheData: ' + userData)
 		if(userData){
 			setUserData(JSON.parse(userData));
-			console.log(userData)
 		}
   }
 
@@ -145,24 +138,80 @@ export default function ListTable(props: any) {
 		}
 	};
 
-	const handleDeleteItem = (row: Gift | undefined | any) => {
+	const handleDeleteItem = async (row: Gift | undefined | any) => {
 		if (editableComponents) {
+			if(row){
+				const deletedRow = await deleteGift({
+					variables: {
+						id: row.id
+					}
+				});
+
+				const publishResult = await publishItem({
+					variables: {
+						id: deletedRow.data?.deleteGift?.id,
+					},
+				});
+	
+				await refetchListInfo();
+			}
 		}
 	};
 
-	const handlePickItem = (row: Gift | undefined | any) => {
+	const handlePickItem = async (row: Gift | undefined | any) => {
 		if (row) {
-			const updatedRow = usePickGiftByIdMutation({
+			const updatedRow = await pickGift({
 				variables: {
 					id: row.id,
+					contributorName: userData?.name,
+					contributorEmail: userData?.email
 				},
 			});
 
+			const publishResult = await publishItem({
+				variables: {
+					id: updatedRow.data?.updateGift?.id,
+				},
+			});
 
+			await refetchListInfo();
 		}
 	};
 
-	const handleGiveUpItem = (row: Gift | undefined | any) => {};
+	const handleGiveUpItem = async (row: Gift | undefined | any) => {
+		if (row) {
+			const updatedRow = await pickGift({
+				variables: {
+					id: row.id,
+					contributorName: null,
+					contributorEmail: null
+				},
+			});
+
+			const publishResult = await publishItem({
+				variables: {
+					id: updatedRow.data?.updateGift?.id,
+				},
+			});
+
+			await refetchListInfo();
+		}		
+	};
+
+	const RenderGiveupItemIcon = (row: Gift | undefined | any) => {
+		if(editableComponents || row?.contributorEmail === userData?.email){
+			return (
+				<button
+				className="flex flex-col justify-center items-center"
+				onClick={() => handleGiveUpItem(row)}
+				>
+					<X className="text-lg font-semibold text-red-500 cursor-pointer" />
+				</button>
+			)
+		}
+
+		return <div></div>;
+	}
 
 	const handleCloseCreateItemModal = async () => {
 		if (showCreateItemModal) {
@@ -180,11 +229,12 @@ export default function ListTable(props: any) {
 			<CreateItemModal
 				showLoader={showCreateItemModal}
 				setShowLoaderProps={handleCloseCreateItemModal}
+				gift={itemToManage}
 			/>
       <div className="flex flex-row items-center w-full justify-center">
 			  <button
 			  	className="flex flex-row items-center gap-3  text-green-700 hover:bg-gray-400 hover:opacity-70 rounded-full  group transition-all ease-out duration-300 transform w-11 h-11 my-5 hover:w-auto"
-			  	onClick={() => setShowCreateItemModal(true)}
+			  	onClick={() => {setItemToManage(undefined); setShowCreateItemModal(true)}}
 			  >
 			  	<PlusCircle className="text-green-500 text-4xl ml-1" />
 			  	<span className="invisible group-hover:visible hidden group-hover:contents text-lg mr-1">
@@ -253,7 +303,7 @@ export default function ListTable(props: any) {
 						<TableBody>
 							{listInfo?.list?.listGifts
 								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-								.map((row, i) => {
+								.map((row) => {
 									return (
 										<TableRow hover role="checkbox" tabIndex={-1} key={row?.id}>
 											<TableCell
@@ -304,12 +354,9 @@ export default function ListTable(props: any) {
 														<p className="font-semibold">
 															{row?.contributorName}
 														</p>
-														<button
-															className="flex flex-col justify-center items-center"
-															onClick={() => handleGiveUpItem(row)}
-														>
-															<X className="text-lg font-semibold text-red-500 cursor-pointer" />
-														</button>
+														
+														<RenderGiveupItemIcon row={row} />
+
 													</div>
 												) : (
 													<button
@@ -337,7 +384,11 @@ export default function ListTable(props: any) {
 												>
 													<button
 														className="mx-1"
-														onClick={() => handleEditItem(row)}
+														onClick={() => {
+															/*@ts-ignore*/
+															setItemToManage(row); 
+															setShowCreateItemModal(true) 
+														}}
 													>
 														Edit
 													</button>
