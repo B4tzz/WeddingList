@@ -179,12 +179,12 @@ export default function ListTable(props: any) {
 	};
 
 	const handleGiveUpItem = async (row: Gift | undefined | any) => {
-		if (row) {
+		if (row.row) {
 			const updatedRow = await pickGift({
 				variables: {
-					id: row.id,
 					contributorName: null,
-					contributorEmail: null
+					contributorEmail: null,
+					id: row.row.id,
 				},
 			});
 
