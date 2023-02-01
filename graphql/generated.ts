@@ -5599,7 +5599,7 @@ export const GetListsByIdDocument = gql`
     manageSlug
     participants
     shareSlug
-    listGifts {
+    listGifts(first: 100) {
       ... on Gift {
         id
         contributorName

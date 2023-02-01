@@ -6,7 +6,7 @@ query GetListsById($id: ID = "") {
     manageSlug
     participants
     shareSlug
-    listGifts {
+    listGifts (first: 100) {
       ... on Gift {
         id
         contributorName
