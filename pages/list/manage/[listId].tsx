@@ -49,8 +49,8 @@ export default function ManageList() {
       <Header page="Dashboard"/>
 
       <main className="mt-4 min-h-screen flex flex-col items-center">
-        <div className='my-4'>
-          <input className='rounded-md focus: bg-gray-100 focus:bg-white p-2 text-center text-2xl' type="text" value={listInfo?.list?.listName} onChange={e => handleListNameRename(e.target.value)} placeholder="Nome da lista" />
+        <div className='my-4 w-auto'>
+          <span className='rounded-md focus: bg-gray-100 focus:bg-white p-2 text-center text-2xl w-auto'>{listInfo?.list?.listName}</span>
         </div>
         <div className='flex justify-evenly items-center w-4/5 mt-10 flex-wrap'>
           <ListTable />
