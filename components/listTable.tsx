@@ -199,7 +199,9 @@ export default function ListTable(props: any) {
 	};
 
 	const RenderGiveupItemIcon = (row: Gift | undefined | any) => {
-		if(editableComponents || row?.contributorEmail === userData?.email){
+		console.log(userData?.email);
+		console.log(row);
+		if(editableComponents || row?.row.contributorEmail === userData?.email){
 			return (
 				<button
 				className="flex flex-col justify-center items-center"
@@ -232,15 +234,21 @@ export default function ListTable(props: any) {
 				gift={itemToManage}
 			/>
       <div className="flex flex-row items-center w-full justify-center">
-			  <button
-			  	className="flex flex-row items-center gap-3  text-green-700 hover:bg-gray-400 hover:opacity-70 rounded-full  group transition-all ease-out duration-300 transform w-11 h-11 my-5 hover:w-auto"
-			  	onClick={() => {setItemToManage(undefined); setShowCreateItemModal(true)}}
-			  >
-			  	<PlusCircle className="text-green-500 text-4xl ml-1" />
-			  	<span className="invisible group-hover:visible hidden group-hover:contents text-lg mr-1">
-			  		Adicionar item
-			  	</span>
-			  </button>
+				{editableComponents ? (
+					<button
+			  		className="flex flex-row items-center gap-3  text-green-700 hover:bg-gray-400 hover:opacity-70 rounded-full  group transition-all ease-out duration-300 transform w-11 h-11 my-5 hover:w-auto"
+			  		onClick={() => {setItemToManage(undefined); setShowCreateItemModal(true)}}
+			  	>
+			  		<PlusCircle className="text-green-500 text-4xl ml-1" />
+			  		<span className="invisible group-hover:visible hidden group-hover:contents text-lg mr-1">
+			  			Adicionar item
+			  		</span>
+			  	</button>
+				)
+				: (
+					<div></div>
+				)
+				}
       </div>
 			<Paper sx={{ width: "100%", overflow: "hidden" }}>
 				<TableContainer sx={{ maxHeight: 440 }}>

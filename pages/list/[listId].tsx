@@ -19,11 +19,6 @@ export default function Dashboard() {
       <Header page="Dashboard"/>
 
       <main className="mt-4 min-h-screen flex flex-col items-center">
-        <button className='flex flex-row items-center gap-3  text-green-700 hover:bg-green-300 hover:opacity-70 rounded-full p-2 group transition ease-linear duration-200 transform'>
-          <PlusCircle className="text-green-500 text-4xl" />
-          <span className='hidden group-hover:contents text-lg'>Criar lista</span>
-        </button>
-
         <div className='flex justify-evenly items-center w-4/5 mt-10 flex-wrap'>
           <ListTable />
         </div>
